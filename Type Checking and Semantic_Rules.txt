@@ -1,0 +1,33 @@
+1. Variable must be declared before use.
+2. Assign has same types of values on lhs and rhs.
+	implemented for integer, decimal, boolean, string.
+	considered type narrowing for decimals.
+3. If assigning Multiple values Number of variables should be same.
+4. If assigning Multiple values	Types of each corresponding variable should be same.
+5. After call keyword, a function should be called.
+6. Number of values to be returned by function and specified in multiple should match.
+7. Number of parameters of a function and specified while calling assign must match.
+8. A array of particular type must be assigned the values of same type.
+9. Array index can only be of type integer.
+10. Array slicing is possible only when both arrays are of same type.
+11. Range in both arrays should be of same size in array slicing.
+12. Type of expression should be same while assignment.
+	a) Type of expression for integers
+		. cannot operate (PLUS, MINUS, MULT, DIV)on different types.
+		. Only '+','-','*','/' operations are supported for integers.
+	b) Type of Expression for decimal.
+		.  cannot operate (PLUS, MINUS, MULT, DIV)on different types except decimals and integer.
+		. Only '+','-','*','/' operations are supported for decimals.
+	c) Type checking for STRING
+		.Repeat operation can be done only on a string, 'integer number of times.
+		.LEXICOGRAPHIC comparison can be done on strings only.
+		.LEXICOGRAPHIC comparison can be done on predefined strings only.
+13. If statement must have expressions of the type Boolean.
+14. The types of variables near relational operator in if statement must match.
+15. While statement must have expreesions of type Boolean.
+16. The types of variables near relational operator in if statement must match.
+17. Program must have a main function and it should be defined only once.
+18. Functions cannot be called recursively.
+19. Only collections can be passed to Name_EQu and Struct_Equ.
+20. The result of Name_Equ and Struct_Equ is Boolean. So they should be assigned only to a boolean variable.
+21. Functions that do not return anything, should be invoked appropriately.

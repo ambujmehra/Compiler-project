@@ -1,0 +1,29 @@
+Prog
+	Global
+		Collection A includes
+			Integer a,b;
+			Character c;
+		endincludes
+
+		Collection B includes
+			Integer b,a;
+			Character c;
+		endincludes
+	EndGlobal
+
+%main():[] SubProg
+
+	A a1;
+	B b1;
+	Boolean C,D;
+
+	@ Type Equivalence \
+	assign C as Name_Equ(a1,b1);
+	assign D as Struct_Equ(a1,b1);
+	print (C);
+	print (D);
+	scan (a1_a);
+	print (a1_a);
+
+EndSubProg
+EndProg

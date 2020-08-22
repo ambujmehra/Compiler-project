@@ -1,0 +1,129 @@
+<Program> 		->	PROG <Global_Block> <more_func_defs> ENDPROG
+<Global_Block>		-> 	GLOBAL <smts_&_func_defs> ENDGLOBAL
+<Global_Block>          -> 	EPSILON
+<more_func_defs>	-> 	<func_defs>  <more_or_not_func_defs>
+<more_or_not_func_defs>	-> 	<more_func_defs>
+<more_or_not_func_defs>	-> 	EPSILON
+<func_defs> 		-> 	FUNC_START <func_sig> <func_body>
+<func_sig>      	-> 	<ID> O_PAR <parameter_list> C_PAR COLON LSB <return_list> RSB
+<func_sig>      	-> 	MAIN O_PAR <parameter_list> C_PAR COLON LSB <return_list> RSB
+<parameter_list>	-> 	<remaining_list>
+<parameter_list>	-> 	EPSILON
+<remaining_list>	-> 	<type> <ID> <remaining_left_rec>
+<remaining_left_rec> 	-> 	COMMA <remaining_list>
+<remaining_left_rec> 	-> 	EPSILON
+<type>			-> 	INTEGER <Box>
+<type>			-> 	STRING
+<type>			-> 	DECIMAL <Box>
+<type>			-> 	CHARACTER
+<type>			-> 	<ID>
+<type>			-> 	BOOLEAN
+<Box>  			-> 	LSB <integerLiteral> RSB
+<Box>  			-> 	EPSILON
+<return_list>		->	<type> <type_more>
+<return_list>		->	EPSILON
+<type_more>		->	COMMA <type> <type_more>
+<type_more>		->	EPSILON
+<func_body>		->	SUBPROG <smts_&_func_defs> ENDSUBPROG
+<smts_&_func_defs>	->	<smts_or_func_defs>  <more_stmt_or_not>
+<more_stmt_or_not>	->	<smts_&_func_defs>
+<more_stmt_or_not>	->	EPSILON
+<smts_or_func_defs>	->	<Statements>
+<smts_or_func_defs>	->	<func_defs>
+<Statements>		->	<Declaration>
+<Statements>		->	<Assignment>
+<Statements>		->	<Conditional>
+<Statements>		->	<IO_statements>
+<Statements>		->	<Iterative>
+<Statements>		->	<Collection_declaration>
+<Statements>		->	<Return_statement>
+<Statements>		->	<Comment_statement>
+<Declaration>		->	<type> <variables> SEMICOLON
+<Assignment>		-> 	ASSIGN <Lvalue> AS <Rvalue> SEMICOLON
+<Lvalue>		->	<ID> <B>
+<Lvalue>		->	MULTIPLE LSB <variables> RSB
+<Lvalue>		->	EPSILON
+<Rvalue>		->	<Expression>
+<Rvalue>		->	<functionCall>
+<functionCall>          ->	CALL <ID> O_PAR <call_param> C_PAR
+<B>			->	LSB <integerOrID> RSB
+<B>			->	UNDERSCORE <ID>
+<B>			->	EPSILON
+<integerOrID>		->	<ID> <SecondID>
+<integerOrID>		->	<integerLiteral> <SecondIndex>
+<SecondIndex>		->	COLON <integerLiteral>
+<SecondIndex>		->	EPSILON
+<SecondID>		->	COLON <ID>
+<SecondID>		->	EPSILON
+<Conditional>		->	IF O_PAR <relep> C_PAR BEGIN <smts_&_func_defs> END <Else_if_block> <Else>
+<Else_if_block>		->	ELSEIF O_PAR <relep> C_PAR BEGIN <smts_&_func_defs> END <Else_if_block>
+<Else_if_block>		->	EPSILON
+<Else>			->	ELSE BEGIN <smts_&_func_defs> END
+<Else>			->	EPSILON
+<Iterative>		->	WHILE O_PAR <relep> C_PAR LOOP <smts_&_func_defs> ENDLOOP
+<Expression>		->	<ID> <B> <ExpB>
+<Expression>		->	<integerLiteral> <ExpB>
+<Expression>		->	<decimalLiteral> <ExpB>
+<Expression>		->	<StringLiteral> <ExpB>
+<Expression>		->	<characterLiteral> <ExpB>
+<Expression>		->	<Mul_Block> <ExpB>
+<Expression>		->	<BooleanLiteral> <ExpB>
+<Expression>		->	NAME_EQU O_PAR <ID> COMMA <ID> C_PAR
+<Expression>		->	STRUCT_EQU O_PAR <ID> COMMA <ID> C_PAR
+<ExpB>				->	<operator> <Expression>
+<ExpB>				->	EPSILON
+<Mul_Block>		-> 	LSB <Mul_Left_Rec> RSB
+<Mul_Left_Rec>		->	<integerLiteral> <integerLiteralMore>
+<Mul_Left_Rec>		->	<decimalLiteral> <decimalLiteralMore>
+<Mul_Left_Rec>		->	<characterLiteral> <characterLiteralMore>
+<integerLiteralMore>	->	COMMA <integerLiteral> <integerLiteralMore>
+<integerLiteralMore>	->	EPSILON
+<decimalLiteralMore>	->	COMMA <decimalLiteral> <decimalLiteralMore>
+<decimalLiteralMore>	->	EPSILON
+<characterLiteralMore>	->	COMMA <characterLiteral> <characterLiteralMore>
+<characterLiteralMore>	->	EPSILON
+<operator>		->	<comp_operator>
+<operator>		->	<Arithmetic_operator>
+<operator>		->	<Bool_operator>
+<operator>		->	<string_operator>
+<string_operator> 	->	REPEAT
+<string_operator> 	->	LEXICOGRAPHIC
+<comp_operator>		->	LT
+<comp_operator>		->	LTE
+<comp_operator>		->	GT
+<comp_operator>		->	GTE
+<comp_operator>		->	NEQ
+<comp_operator>		->	EQ
+<Arithmetic_operator>	->	PLUS
+<Arithmetic_operator>	->	MINUS
+<Arithmetic_operator>	->	MULT
+<Arithmetic_operator>	->	DIV
+<Bool_operator> 	-> 	AND
+<Bool_operator> 	-> 	OR
+<Bool_operator> 	-> 	NOT
+<relep>			->	O_PAR <relep> C_PAR <Bool_operator> O_PAR <relep> C_PAR
+<relep>			->	<var> <comp_operator> <var>
+<var>			->	<integerLiteral>
+<var>			-> 	<decimalLiteral>
+<var>			->	<StringLiteral>
+<var>			->	<BooleanLiteral>
+<var>			->	<ID> <B>
+<variables>		->	<ID> <more_ids>
+<more_ids> 		-> 	COMMA <variables>
+<more_ids> 		->	EPSILON
+<IO_statements>		->	SCAN O_PAR <var> C_PAR SEMICOLON
+<IO_statements>		->	PRINT O_PAR <var> C_PAR SEMICOLON
+<Return_statement>	->	RETURN  LSB <ID> <more_ids> RSB SEMICOLON
+<call_param>		->	<ID> <more_ids>
+<call_param>		->	EPSILON
+<Collection_declaration> ->	COLLECTION <ID> INCLUDES <smts_&_func_defs> ENDINCLUDES
+<StringLiteral> 	-> 	DOUBLE_QUOTE STR DOUBLE_QUOTE
+<integerLiteral> 	->	INTR
+<decimalLiteral> 	-> 	DEC
+<BooleanLiteral>	-> 	TRUE
+<BooleanLiteral>	-> 	FALSE
+<characterLiteral> 	-> 	QUOTE CHAR QUOTE
+<Comment_statement>     -> 	COMMENT_START <StringLiteral> <more_string_literal> COMMENT_END
+<more_string_literal>   ->	<StringLiteral> <more_string_literal>
+<more_string_literal>   ->	EPSILON
+<ID>                    -> 	IDEN

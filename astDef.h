@@ -1,0 +1,52 @@
+#ifndef _ASTDEF_H_
+#define _ASTDEF_H_
+
+char* ast_terminals[44]=
+{
+  "PROG",
+  "GLOBAL",
+  "SUBPROG",
+  "INTEGER",
+  "STRING", 
+  "DECIMAL",
+  "CHARACTER",
+  "BOOLEAN",
+  "ASSIGN",
+  "MULTIPLE",
+  "UNDERSCORE",
+  "IF",
+  "ELSEIF",
+  "ELSE",
+  "WHILE",
+  "NAME_EQU",
+  "STRUCT_EQU",
+  "REPEAT",
+  "LEXICOGRAPHIC",
+  "LT",
+  "LTE",
+  "GT",
+  "GTE",
+  "NEQ",
+  "EQ",
+  "PLUS",
+  "MINUS",
+  "MULT",
+  "DIV",
+  "AND",
+  "OR",
+  "NOT",
+  "SCAN",
+  "PRINT",
+  "RETURN",
+  "COLLECTION",
+  "STR",
+  "INTR",
+  "DEC",
+  "TRUE",
+  "FALSE",
+  "CHAR",
+  "IDEN",
+  "MAIN"
+};
+
+#endif

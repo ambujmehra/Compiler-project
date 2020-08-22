@@ -1,0 +1,26 @@
+Prog	
+	%main():[] SubProg
+	
+		Integer a1,a2,b1,b2;
+		Boolean avar,bvar;
+		assign avar as TRUE;
+		assign bvar as TRUE;
+		assign multiple [a1,a2,b1,b2] as [1,2,1,2];
+
+
+		if(avar =TRUE)
+		Begin
+			if(bvar =TRUE)
+		     	Begin
+		  		print("b1 is less than b2");
+	     		End
+	
+	     		else
+	     		Begin
+				print("b1 is greater that b2");
+	     		End
+		End
+		
+	EndSubProg
+EndProg
+
